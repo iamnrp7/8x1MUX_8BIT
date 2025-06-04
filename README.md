@@ -80,10 +80,6 @@ Contributions to this project are welcome. Please follow these steps:
 
     Submit a pull request with a detailed description of your changes.
 
-License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
-Contact
 
 For any questions or feedback, please contact:
 
