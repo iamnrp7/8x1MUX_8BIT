@@ -1,0 +1,57 @@
+simSetSimulator "-vcssv" -exec \
+           "/home/student/Videos/RTL2GDSII/rtl_simulation/simv" -args "Verdi"
+debImport "-dbdir" "/home/student/Videos/RTL2GDSII/rtl_simulation/simv.daidir"
+debLoadSimResult /home/student/Videos/RTL2GDSII/rtl_simulation/novas.fsdb
+wvCreateWindow
+verdiSetActWin -win $_nWave2
+verdiWindowResize -win $_Verdi_1 "0" "27" "1366" "704"
+verdiWindowResize -win $_Verdi_1 "0" "27" "1366" "704"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {7 10 3 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {6 10 1 1 1 1}
+wvAddSignal -win $_nWave2 "/testbench/Clock" "/testbench/I0\[7:0\]" \
+           "/testbench/I1\[7:0\]" "/testbench/I2\[7:0\]" \
+           "/testbench/I3\[7:0\]" "/testbench/I4\[7:0\]" \
+           "/testbench/I5\[7:0\]" "/testbench/I6\[7:0\]" \
+           "/testbench/I7\[7:0\]" "/testbench/Sel\[2:0\]" \
+           "/testbench/y\[7:0\]"
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 11)}
+wvSetPosition -win $_nWave2 {("G1" 11)}
+verdiSetActWin -win $_nWave2
+wvSetCursor -win $_nWave2 0.517119 -snap {("G1" 3)}
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvSetMarker -win $_nWave2 0.000000
+wvSetCursor -win $_nWave2 0.510315 -snap {("G1" 4)}
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvCreateWindow
+verdiSetActWin -win $_nWave3
+schCreateWindow -delim "." -win $_nSchema1 -scope "testbench"
+verdiSetActWin -win $_nSchema_4
+wvCreateWindow
+verdiSetActWin -win $_nWave5
+verdiSetActWin -win $_nSchema_4
+srcHBSelect "testbench.dut" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "testbench" -win $_nTrace1
+srcSetScope "testbench" -delim "." -win $_nTrace1
+srcHBSelect "testbench" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcSelect -win $_nTrace1 -range {6 11 1 1 2 1}
+debExit

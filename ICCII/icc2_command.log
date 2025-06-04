@@ -1,0 +1,118 @@
+#@ # 
+#@ # Running icc2_shell Version W-2024.09 for linux64 -- Aug 25, 2024
+#@ # Date:   Mon Jun  2 17:42:44 2025
+#@ # Run by: student@ict-chipin.sot.pdpu.ac.in
+#@ 
+
+start_gui
+gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {Logical Cells}
+set PDK_PATH ./../ref
+create_lib -ref_lib $PDK_PATH/lib/ndm/saed32rvt_c.ndm MUX_8X1_8BIT_LIB
+read_verilog {./../DC/results/mux8x1_8bit.mapped.v} -library MUX_8X1_8BIT_LIB -design mux8x1_8bit -top mux8x1_8bit
+initialize_floorplan -shape L -core_offset 2 -coincident_boundary true
+set_individual_pin_constraints -ports [get_ports {A B}] -sides 6
+place_pins -self
+create_placement -floorplan  -effort medium
+save_block
+save_lib
+win_set_filter -visible -class cell -filter {assembly_die_margin bridge clock_margin filler_allowed_margin hard_macro_margin hard_margin route_blockage_margin seal_ring_margin soft_margin substrate} -layer {}
+win_set_filter -visible -class pseudo_bump -filter {deleted} -layer {}
+win_set_filter -visible -class pseudo_tsv -filter {deleted} -layer {}
+win_set_filter -visible -class placement_blockage -filter {wiring} -layer {0-82}
+win_set_filter -expand_cell_types {soft_macro  }
+win_set_select_class -visible {cell port bound routing_blockage shaping_blockage pg_region bump_region pseudo_bump pseudo_tsv pin_blockage block_shielding topology_node topology_edge topology_repeater annotation_shape core_area die_area edit_group shape via terminal fill_cell metal_area metal_area_hole placement_blockage }
+win_set_filter -class cell -filter {array assembly_die_margin bridge clock_margin filler_allowed_margin hard_macro_margin hard_margin route_blockage_margin seal_ring_margin soft_margin substrate} -layer {}
+win_set_filter -class pseudo_bump -filter {deleted} -layer {}
+win_set_filter -class pseudo_tsv -filter {deleted} -layer {}
+win_set_filter -class placement_blockage -filter {wiring} -layer {0-82}
+win_set_select_class {cell port bound routing_blockage shaping_blockage pg_region bump_region pseudo_bump pseudo_tsv pin_blockage topology_node topology_edge topology_repeater annotation_shape edit_group shape via metal_area metal_area_hole placement_blockage }
+gui_zoom -window [gui_get_current_window -view] -full
+win_select_objects -slct_targets global -at {13.431 24.066} -radius 0.0608
+report_qor
+report_timing
+report_units
+source -verbose -echo /home/student/Videos/RTL2GDSII/ICCII/scripts/power_planning.tcl
+win_select_objects -slct_targets global -at {8.690 26.557} -radius 0.0608
+gui_highlight_nets_of_selected
+win_select_objects -slct_targets global -at {13.491 26.010} -radius 0.0608
+gui_highlight_nets_of_selected
+win_select_objects -slct_targets global -at {8.204 27.043} -radius 0.0608
+win_select_objects -slct_targets global -at {8.265 26.618} -radius 0.0608
+gui_highlight_nets_of_selected
+win_select_objects -slct_targets global -at {12.276 25.889} -radius 0.0608
+gui_change_highlight -remove -all_colors
+report_qor
+source -verbose -echo /home/student/Videos/RTL2GDSII/ICCII/scripts/placement.tcl
+report_qor
+report_timing
+report_units
+win_select_objects -slct_targets global -at {7.353 26.618} -radius 0.0608
+gui_highlight_nets_of_selected
+win_select_objects -slct_targets global -at {11.547 26.314} -radius 0.0608
+gui_highlight_nets_of_selected
+check_pg_connectivity
+win_select_objects -slct_targets global -at {15.315 23.823} -radius 0.0608
+gui_change_highlight -remove -all_colors
+source -verbose -echo /home/student/Videos/RTL2GDSII/ICCII/scripts/clock.tcl
+report_qor
+report_timing
+report_units
+check_pg_connectivity
+win_select_objects -slct_targets global -at {8.873 26.740} -radius 0.0608
+gui_highlight_nets_of_selected
+win_select_objects -slct_targets global -at {13.734 26.132} -radius 0.0608
+gui_highlight_nets_of_selected
+#######################################################
+# set app options
+#########################################################
+#
+#global route
+set_app_options -name route.global.timing_driven -value true
+set_app_options -name route.global.crosstalk_driven -value false
+#track assignment
+set_app_options -name route.track.timing_driven -value true
+set_app_options -name route.track.crosstalk_driven -value true
+#
+#detail route
+set_app_options -name route.detail.timing_driven -value true
+set_app_options -name route.detail.save_after_iterations -value false
+set_app_options -name route.detail.force_max_number_iterations -value false
+set_app_options -name route.detail.antenna -value true
+set_app_options -name route.detail.antenna_fixing_preference -value use_diodes
+set_app_options -name route.detail.diode_libcell_names -value */ANTENNA_RVT
+#
+####################################
+#Atomic commands for route_auto
+###################################
+route_global
+#save_block route_global_database
+route_track
+#save_block route_track_database
+route_detail
+#save_block route_detail_database
+#route_auto
+#
+#
+#
+route_opt
+config_flow
+config_flow -stage cfinal_opto_prelude
+######################################
+# OUTPUTS
+#
+#
+write_verilog ./results/mux.routed.v
+write_sdc -output ./results/mux.routed.sdc
+write_parasitics -format spef -output ./results/mux${scenario1}.spef
+#
+gui_zoom -window [gui_get_current_window -view] -full
+win_select_objects -slct_targets global -at {9.663 26.861} -radius 0.0608
+gui_change_highlight -remove -all_colors
+report_timing
+report_qor
+report_units
+report_power
+win_select_objects -slct_targets global -at {12.458 26.618} -radius 0.0608
+gui_highlight_nets_of_selected
+win_select_objects -slct_targets global -at {10.696 26.132} -radius 0.0608
+gui_highlight_nets_of_selected

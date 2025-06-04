@@ -1,0 +1,6 @@
+./results/muxfunc::nom.spef.p1_125.spef for scenarios: 
+	 scenario: func::nom, corner type: late
+
+./results/muxfunc::nom.spef.p2_125.spef for scenarios: 
+	 scenario: func::nom, corner type: early
+

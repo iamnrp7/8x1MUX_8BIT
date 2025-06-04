@@ -1,0 +1,47 @@
+****************************************
+Report : timing
+	-path_type full
+	-delay_type max
+	-max_paths 1
+	-sort_by slack
+Design : mux8x1_8bit
+Version: W-2024.09
+Date   : Mon Jun  2 14:26:15 2025
+****************************************
+
+
+  Startpoint: Sel[1] (input port clocked by Clock)
+  Endpoint: y_reg[6] (rising edge-triggered flip-flop clocked by Clock)
+  Path Group: Clock
+  Path Type: max
+
+  Point                                    Incr       Path
+  ---------------------------------------------------------------
+  clock Clock (rise edge)              0.000000   0.000000
+  clock network delay (ideal)          0.000000   0.000000
+  input external delay                 0.500000   0.500000 r
+  Sel[1] (in)                          0.000000 & 0.500000 r
+  U113/Y (INVX0_RVT)                   0.013926 & 0.513926 f
+  U114/Y (AND2X2_RVT)                  0.045559 & 0.559485 f
+  U196/Y (AND2X1_RVT)                  0.030523 & 0.590008 f
+  U200/Y (OR4X1_RVT)                   0.045934 & 0.635942 f
+  U201/Y (AND2X1_RVT)                  0.020856 & 0.656798 f
+  U208/Y (OR2X1_RVT)                   0.022171 & 0.678969 f
+  y_reg[6]/D (DFFX1_RVT)               0.000025 & 0.678995 f
+  data arrival time                               0.678995
+
+  clock Clock (rise edge)              1.410000   1.410000
+  clock network delay (ideal)          0.000000   1.410000
+  y_reg[6]/CLK (DFFX1_RVT)                        1.410000 r
+  clock reconvergence pessimism        0.000000   1.410000
+  clock uncertainty                    -0.100000  1.310000
+  library setup time                   -0.019299  1.290701
+  data required time                              1.290701
+  ---------------------------------------------------------------
+  data required time                              1.290701
+  data arrival time                               -0.678995
+  ---------------------------------------------------------------
+  slack (MET)                                     0.611706
+
+
+1
