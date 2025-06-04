@@ -38,7 +38,8 @@ To replicate or build upon this project, you will need access to the following t
 
    ```bash
    git clone https://github.com/iamnrp7/8x1MUX_8BIT.git
-2.     Ensure you have access to the necessary Synopsys tools and a compatible PDK.
+   
+2. Ensure you have access to the necessary Synopsys tools and a compatible PDK.
 
 Usage
 RTL Design and Verification
